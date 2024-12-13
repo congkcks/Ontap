@@ -4,3 +4,6 @@ Scaffold-DbContext "Data Source=CONGKC\SQLEXPRESS;Initial Catalog=OnlineShop;Int
 
 builder.Services.AddDbContext<OnlineShopContext>(options =>
 	options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+ Components
+ ViewComponents
