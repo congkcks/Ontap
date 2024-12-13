@@ -1,0 +1,42 @@
+﻿@{
+    Layout = "~/Views/Shared/ontap.cshtml";
+}
+@model Ontap.Models.Customer
+<div class="container">
+    <h2>Create Customer</h2>
+    <form asp-action="DangKi" asp-controller="Home" method="post" class="form-horizontal">
+        <div class="form-group">
+            <label asp-for="Fullname" class="control-label col-sm-2">Fullname</label>
+            <div class="col-sm-10">
+                <input asp-for="Fullname" class="form-control" />
+                <span asp-validation-for="Fullname" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Email" class="control-label col-sm-2">Email</label>
+            <div class="col-sm-10">
+                <input asp-for="Email" class="form-control" type="email" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Password" class="control-label col-sm-2">Password</label>
+            <div class="col-sm-10">
+                <input asp-for="Password" class="form-control" type="password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="RePassword" class="control-label col-sm-2">Confirm Password</label>
+            <div class="col-sm-10">
+                <input asp-for="RePassword" class="form-control" type="password" />
+                <span asp-validation-for="RePassword" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>

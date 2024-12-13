@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Product>  
+
+<!-- Hiển thị ViewBag.Message nếu có -->
+@if (ViewBag.Message != null)
+{
+    <p><strong>@ViewBag.Message</strong></p>
+}
+
+@foreach (var product in Model)
+{
+    <div class="col-md-3 top_brand_left-1">
+        <div class="hover14 column">
+            <div class="agile_top_brand_left_grid">
+                <div class="agile_top_brand_left_grid_pos">
+                    <img src="./de1/images/offer.png" alt=" " class="img-responsive">
+                </div>
+                <div class="agile_top_brand_left_grid1">
+                    <figure>
+                        <div class="snipcart-item block">
+                            <div class="snipcart-thumb">
+                                <a href="products.html">
+                                    <img title=" " alt=" " src="./de1/images/@product.Image" />
+                                </a>
+                                <p>@product.Name</p>
+                                <div class="stars">
+                                    <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star blue-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star gray-star" aria-hidden="true"></i>
+                                </div>
+                                <h4>$@product.UnitPrice <span>$@product.UnitPrice</span></h4>
+                            </div>
+                            <div class="snipcart-details top_brand_home_details">
+                                <form action="#" method="post">
+                                    <fieldset>
+                                        <input type="hidden" name="cmd" value="_cart">
+                                        <input type="hidden" name="add" value="1">
+                                        <input type="hidden" name="item_name" value="@product.Name">
+                                        <input type="hidden" name="amount" value="@product.UnitPrice">
+                                        <input type="hidden" name="currency_code" value="USD">
+                                        <input type="submit" name="submit" value="Add to cart" class="button">
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </div>
+                    </figure>
+                </div>
+            </div>
+        </div>
+    </div>
+}

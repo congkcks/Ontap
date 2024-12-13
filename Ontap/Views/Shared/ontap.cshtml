@@ -1,0 +1,223 @@
+﻿<!--
+author: W3layouts
+author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online Shopping</title>
+    <!-- for-mobile-apps -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!-- //for-mobile-apps -->
+    <link href="~/de1/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/de1/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- font-awesome icons -->
+    <link href="~/de1/css/font-awesome.css" rel="stylesheet">
+    <!-- //font-awesome icons -->
+    <!-- js -->
+    <script src="~/de1/js/jquery-1.11.1.min.js"></script>
+    <!-- //js -->
+</head>
+
+<body>
+    <!-- header -->
+    @* <div class="agileits_header">
+    <div class="container">
+    <div class="w3l_offers">
+    <p>SALE UP TO 70% OFF. USE CODE "SALE70%" . <a href="products.html">SHOP NOW</a></p>
+    </div>
+    <div class="agile-login">
+    <ul>
+    <li><a href="registered.html"> Create Account </a></li>
+    <li><a href="login.html">Login</a></li>
+    <li><a href="contact.html">Help</a></li>
+
+    </ul>
+    </div>
+    <div class="product_list_header">
+    <form action="#" method="post" class="last">
+    <input type="hidden" name="cmd" value="_cart">
+    <input type="hidden" name="display" value="1">
+    <button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
+    </form>
+    </div>
+    <div class="clearfix"> </div>
+    </div>
+    </div>
+    *@
+    <partial name="_Header" />
+    <!-- //header -->
+    <!-- navigation -->
+    <div class="navigation-agileits">
+        <div class="container">
+            <nav class="navbar navbar-default">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header nav_2">
+                    <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
+                    <ul class="nav navbar-nav">
+                        @foreach (var item in ViewBag.TieuDe)
+                        {
+                            <li class="active"><a href="@Url.Action("Index", "Home")">@item.NavNameVn</a></li>
+                        }
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <!-- //navigation -->
+    <!--brands-->
+    @* <div class="brands">
+    <div class="container">
+    <h3>Brand Store</h3>
+    <div class="brands-agile">
+    <div class="col-md-2 w3layouts-brand">
+    <div class="brands-w3l">
+    <p><a href="#">Lorem</a></p>
+    </div>
+    </div>
+    <div class="col-md-2 w3layouts-brand">
+    <div class="brands-w3l">
+    <p><a href="#">Lorem</a></p>
+    </div>
+    </div>
+    <div class="col-md-2 w3layouts-brand">
+    <div class="brands-w3l">
+    <p><a href="#">Lorem</a></p>
+    </div>
+    </div>
+
+    <div class="col-md-2 w3layouts-brand">
+    <div class="brands-w3l">
+    <p><a href="#">Lorem</a></p>
+    </div>
+    </div>
+    <div class="col-md-2 w3layouts-brand">
+    <div class="brands-w3l">
+    <p><a href="#">Lorem</a></p>
+    </div>
+    </div>
+    <div class="col-md-2 w3layouts-brand">
+    <div class="brands-w3l">
+    <p><a href="#">Lorem</a></p>
+    </div>
+    </div>
+    <div class="clearfix"></div>
+    </div>
+    </div>
+    </div> *@
+    <!--//brands-->
+    <!-- main content -->
+    @RenderBody()
+    <!-- //main content -->
+    <!-- footer -->
+    <partial name="_Footer" />
+    <!-- //footer -->
+    <script>
+        $(document).ready(function () {
+            $('#categoryId').change(function () {
+                var categoryId = $(this).val(); // Lấy giá trị ID của danh mục được chọn
+                console.log(categoryId);  // Kiểm tra ID danh mục trong console
+
+                // Kiểm tra nếu categoryId không rỗng
+                if (!categoryId) {
+                    alert("Please select a category.");
+                    return;
+                }
+
+                $.ajax({
+                    url: '@Url.Action("GetProDuct", "Home")',  // Địa chỉ URL của phương thức trong controller
+                    type: 'POST',  // Phương thức gửi dữ liệu
+                    data: { id: categoryId },  // Dữ liệu gửi đến server
+                    success: function (response) {  // Xử lý khi yêu cầu thành công
+                        console.log(response);  // Hiển thị kết quả trả về từ server
+                        // Xử lý dữ liệu trả về và chèn HTML vào giao diện
+                        var productHTML = '';
+                        // Giả sử response là danh sách sản phẩm
+                        $.each(response, function (index, product) {
+                            // Tạo mã HTML cho mỗi sản phẩm
+                            productHTML += '<div class="col-md-3 top_brand_left-1">' +
+                                '<div class="hover14 column">' +
+                                '<div class="agile_top_brand_left_grid">' +
+                                '<div class="agile_top_brand_left_grid_pos">' +
+                                '<img src="./de1/images/offer.png" alt=" " class="img-responsive">' +
+                                '</div>' +
+                                '<div class="agile_top_brand_left_grid1">' +
+                                '<figure>' +
+                                '<div class="snipcart-item block">' +
+                                '<div class="snipcart-thumb">' +
+                                '<a href="products.html"><img title=" " alt=" " src="./de1/images/' + product.image + '"></a>' +
+                                '<p>' + product.name + '</p>' +
+                                '<div class="stars">' +
+                                '<i class="fa fa-star blue-star" aria-hidden="true"></i>' +
+                                '<i class="fa fa-star blue-star" aria-hidden="true"></i>' +
+                                '<i class="fa fa-star blue-star" aria-hidden="true"></i>' +
+                                '<i class="fa fa-star blue-star" aria-hidden="true"></i>' +
+                                '<i class="fa fa-star gray-star" aria-hidden="true"></i>' +
+                                '</div>' +
+                                '<h4>$' + product.unitPrice + ' <span>$' + product.unitPrice + '</span></h4>' +
+                                '</div>' +
+                                '<div class="snipcart-details top_brand_home_details">' +
+                                '<form action="#" method="post">' +
+                                '<fieldset>' +
+                                '<input type="hidden" name="cmd" value="_cart">' +
+                                '<input type="hidden" name="add" value="1">' +
+                                '<input type="hidden" name="business" value=" ">' +
+                                '<input type="hidden" name="item_name" value="' + product.name + '">' +
+                                '<input type="hidden" name="amount" value="' + product.unitPrice + '">' +
+                                '<input type="hidden" name="discount_amount" value="1.00">' +
+                                '<input type="hidden" name="currency_code" value="USD">' +
+                                '<input type="hidden" name="return" value=" ">' +
+                                '<input type="hidden" name="cancel_return" value=" ">' +
+                                '<input type="submit" name="submit" value="Add to cart" class="button">' +
+                                '</fieldset>' +
+                                '</form>' +
+                                '</div>' +
+                                '</div>' +
+                                '</figure>' +
+                                '</div>' +
+                                '</div>' +
+                                '</div>' +
+                                '</div>';
+                        });
+
+                        // Chèn HTML vào container
+                        $('.agile_top_brands_grids').html(productHTML);
+                    },
+                    error: function (xhr, status, error) {  // Xử lý khi có lỗi
+                        console.log('Error: ', error);  // Hiển thị lỗi
+                    }
+                });
+               
+            });
+            $("#cau42").keyup(function () {
+                var key = $(this).val();
+                $.ajax({
+                    url: '@Url.Action("TimKiem", "Home")',
+                    type: 'GET',
+                    data: { key: key },
+                    success: function (data) {
+                        // Cập nhật nội dung của phần tử với dữ liệu nhận được từ PartialView
+                        $('.agile_top_brands_grids').html(data);
+                    }
+                });
+            });
+
+
+        });
+    </script>
+</body>
+</html>
+
+
